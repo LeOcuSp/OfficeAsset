@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('serial_number')->nullable();
             $table->string('asset_number')->nullable();
-            $table->string('status')->nullable();
+            $table->enum('status', ['Active', 'Inactive'])->default('Active');
             $table->date('date_of_warranty')->nullable();
             $table->foreignId('asset_donor_id')->nullable()->constrained('asset_donors'); // Make sure donors table exists
             $table->string('location')->nullable();

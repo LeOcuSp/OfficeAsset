@@ -16,7 +16,9 @@ class AssetItem extends Model
         'location', 'vendor', 'purchased_price', 'remark', 'status', 'asset_allocation_id'
     ];
 
-
+    protected $casts = [
+        'status' => 'string',
+    ];
 
     public function category()
     {

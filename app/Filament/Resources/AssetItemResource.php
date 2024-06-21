@@ -80,8 +80,7 @@ class AssetItemResource extends Resource
                     ->options([
                         'Active' => 'Active',
                         'Inactive' => 'Inactive',
-                    ])
-                    ,
+                    ]),
 
                 Placeholder::make('latest_allocation')
                     ->label('Latest Allocation')
