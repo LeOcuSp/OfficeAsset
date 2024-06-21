@@ -93,12 +93,12 @@ class AssetItemResource extends Resource
                     }),
 
                 TextInput::make('brand')->required(),
-                TextInput::make('model')->required(),
+                TextInput::make('model'),
                 DatePicker::make('date_of_purchase')->required(),
                 TextInput::make('description')->nullable(),
                 TextInput::make('serial_number')->required()->unique(ignoreRecord: true),
                 TextInput::make('asset_number')->required()->unique(ignoreRecord: true),
-                DatePicker::make('date_of_warranty')->required(),
+                DatePicker::make('date_of_warranty'),
                 TextInput::make('location')->required(),
                 TextInput::make('vendor')->required(),
                 TextInput::make('purchased_price')
