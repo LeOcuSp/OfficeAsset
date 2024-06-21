@@ -12,6 +12,7 @@ class AssetDamage extends Model
 protected $fillable = [
     'date',
     'asset_item_id',
+    'asset_category_id', // added
     'reason',
     'status',
     'reported_by',
