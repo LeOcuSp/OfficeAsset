@@ -18,7 +18,7 @@ class AssetDonorFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'asset_item_id' => $this->faker->numberBetween(1, 10)
+
         ];
     }
 }

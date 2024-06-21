@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use livewire;
 use Filament\Forms;
 use Filament\Tables;
 use Filament\Forms\Set;
@@ -10,6 +11,7 @@ use App\Models\AssetItem;
 use App\Models\AssetDonor;
 use Filament\Tables\Table;
 use App\Models\AssetDamage;
+use App\Models\AssetAllocation;
 use Filament\Actions\EditAction;
 use Filament\Resources\Resource;
 use Filament\Tables\Filters\Filter;
@@ -32,10 +34,31 @@ use App\Filament\Resources\AssetItemResource\Pages\CreateAssetItem;
 
 class AssetItemResource extends Resource
 {
+
     protected static ?string $model = AssetItem::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    //     public function updateLatestAllocation(AssetItem $record)
+    //     {
+    //         // Assuming you have a relationship with the latest allocation model
+    //         $record->latestAllocation()->update([
+    //             'allocated_to' => 'New Allocation'
+    //         ]);
+
+    //         return redirect()->route('your-route-name', $record->getKey());
+    //     }
+    //     public static function getActions(): array
+    // {
+    //     return [
+    //         // ... other actions ...
+    //             AssetAllocation::make('Update Latest Allocation')
+    //             ->action('updateLatestAllocation')
+    //             ->icon('heroicon-s-pencil')
+    //             ->color('success'),
+    //         // ... other actions ...
+    //     ];
+    // }
     public static function form(Form $form): Form
     {
         return $form
@@ -51,14 +74,19 @@ class AssetItemResource extends Resource
                     ->relationship('donor', 'name')
                     ->nullable(),
 
-                Radio::make('status')
+                Select::make('status')
                     ->label('Status')
-                    ->default('Active'),
+                    ->default('Active')
+                    ->options([
+                        'Active' => 'Active',
+                        'Inactive' => 'Inactive',
+                    ])
+                    ,
 
-                    Placeholder::make('latest_allocation')
+                Placeholder::make('latest_allocation')
                     ->label('Latest Allocation')
                     ->content(function ($record) {
-                        if ($record->latestAllocation) {
+                        if ($record && $record->latestAllocation) {
                             return $record->latestAllocation->allocated_to;
                         } else {
                             return 'No allocations yet';
@@ -109,6 +137,7 @@ class AssetItemResource extends Resource
             ->recordUrl(null)
             ->actions([
                 Tables\Actions\ViewAction::make(),
+
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

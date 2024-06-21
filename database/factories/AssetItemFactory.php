@@ -35,7 +35,7 @@ class AssetItemFactory extends Factory
             'vendor' => $this->faker->word,
             'purchased_price' => $this->faker->randomFloat(2, 1, 1000),
             'remark' => $this->faker->word,
-            'status' => $this->faker->word,
+            'status' => $this->faker->randomElement(['Active', 'Inactive']),
             'asset_allocation_id' => $this->faker->numberBetween(1, 10),
         ];
     }

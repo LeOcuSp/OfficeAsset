@@ -18,8 +18,6 @@ class AssetCategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->word,
-            'parent_id' => $this->faker->numberBetween(1, 10),
-            'asset_item_id' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

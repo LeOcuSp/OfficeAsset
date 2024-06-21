@@ -39,7 +39,8 @@ class AssetAllocationResource extends Resource
                 Select::make('asset_item_id')
                 ->label('Select Asset Number')
                 ->relationship('assetItem','asset_number')
-                ->nullable(),
+                ->nullable()
+                ->unique(ignoreRecord: true),
             ]);
     }
 
